@@ -9,7 +9,6 @@ from multiprocessing import Pool
 client = pymongo.MongoClient(MONGO_URL)
 db = client[MONGO_DB]
 
-
 def get_page_index(offset, keyword):
     param = {
         'aid': 24,
@@ -38,9 +37,6 @@ def get_page_index(offset, keyword):
     except requests.ConnectionError:
             return None
 
-
-
-
 def parse_page_index(json):
     if json.get('data'):
         data = json.get('data')
@@ -65,8 +61,6 @@ def parse_page_index(json):
             print(title + '有问题')
             print(item)
             print('**************分隔符*************')
-
-
 
 def save_to_mongo(result):
     if db[MONGO_TABLE].insert(result):
